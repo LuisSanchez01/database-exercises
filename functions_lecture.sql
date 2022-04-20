@@ -98,6 +98,8 @@ SELECT MIN(salary)
 FROM salaries
 WHERE emp_no = 10001;
 
+SELECT SUM(salary) FROM salaries WHERE to_date > NOW();
+
 # AVG()
 
 SELECT AVG(salary)
