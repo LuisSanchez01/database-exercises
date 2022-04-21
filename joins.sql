@@ -27,3 +27,13 @@ INSERT INTO preferences (person_id, album_id) VALUES (1, 12), (1, 5), (1, 21), (
 
 SELECT p.first_name AS name, a.name AS album FROM persons p JOIN preferences pf ON
     p.id = pf.person_id JOIN albums a ON pf.album_id = a.id;
+USE employees;
+
+SELECT employees.last_name AS name, salaries.salary AS salary FROM
+employees NATURAL JOIN salaries;
+
+SELECT salary
+FROM salaries s JOIN dept_emp de ON s.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+JOIN employees e ON e.emp_no = de.emp_no
+WHERE d.dept_name = 'Research';
