@@ -13,3 +13,14 @@ CREATE TABLE `persons` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 INSERT INTO `persons` VALUES (1,'Olivia',1),(2,'Santiago',2),(3,'Tareq',4),(4,'Anaya',5);
+
+
+CREATE TABLE preferences (
+    person_id INT UNSIGNED NOT NULL,
+    album_id INT UNSIGNED NOT NULL,
+    CONSTRAINT preferences_person_id_fk FOREIGN KEY (person_id) REFERENCES
+  persons (id),
+  CONSTRAINT  preferences_album_id_fk FOREIGN KEY (album_id) REFERENCES albums (id)
+);
+
+INSERT INTO preferences (person_id, album_id) VALUES (1, 12), (1, 5), (1, 21), (1, 29), (2, 1), (2, 32), (2, 30), (3, 11), (3, 26), (3, 25);
