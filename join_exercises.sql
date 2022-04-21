@@ -70,9 +70,8 @@ SELECT CONCAT(e.first_name, ' ', e.last_name) AS Employee,
        JOIN departments d ON de.dept_no = d.dept_no
        JOIN dept_manager dm ON d.dept_no = dm.dept_no
        JOIN employees e2 ON dm.emp_no = e2.emp_no
-WHERE de.to_date LIKE '9%'
-    AND dm.to_date LIKE '9%'
-ORDER BY dept_name;
+WHERE YEAR(de.to_date) = 9999 AND YEAR(dm.to_date) = 9999;
+
 
 
 
