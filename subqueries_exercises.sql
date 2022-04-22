@@ -32,5 +32,28 @@ WHERE emp_no IN (
     WHERE first_name = 'Aamod'
     );
 
+# Find all the current department managers that are female.
+SELECT first_name, last_name AS employee_name
+FROM employees WHERE emp_no IN (
+SELECT emp_no FROM dept_manager WHERE YEAR(to_date) = 9999 AND gender = 'F');
+
+# Bonus
 
 
+
+SELECT dept_no
+FROM dept_manager
+WHERE to_date LIKE '9%' AND emp_no IN (
+    SELECT emp_no
+    FROM employees
+    WHERE gender = 'F'
+    );
+
+# 2nd Bonus
+SELECT CONCAT(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE emp_no IN (
+SELECT emp_no
+FROM salaries
+WHERE to_date LIKE '9%' AND salary IN (
+SELECT MAX(salary) FROM salaries));
