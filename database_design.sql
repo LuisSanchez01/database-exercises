@@ -1,6 +1,7 @@
 USE codeup_test_db;
 
 DROP TABLE quotes;
+DROP TABLE authors;
 
 CREATE TABLE `quotes` (
                           `id` int NOT NULL AUTO_INCREMENT,
@@ -32,8 +33,14 @@ ALTER TABLE quotes ADD COLUMN author_id INT UNSIGNED NOT NULL;
 
 UPDATE quotes
     SET author_id = (SELECT id FROM authors WHERE author_name = 'Marcel Proust')
-    WHERE author = 'Neil Gaiman';
+    WHERE author = 'Marcel Proust';
+
+UPDATE quotes
+SET author_id = (SELECT id FROM authors WHERE author_name = 'Neil Gaiman')
+WHERE author = 'Neil Gaiman';
 
 ALTER TABLE quotes DROP COLUMN author;
+ALTER TABLE quotes ADD CONSTRAINT quotes_author_id_fk FOREIGN KEY (author_id)
+    REFERENCES authors (id);
 
 
